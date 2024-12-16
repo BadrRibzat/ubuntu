@@ -1,0 +1,28 @@
+#cloud-config
+autoinstall:
+  version: 1
+  locale: en_US
+  keyboard:
+    layout: us
+  network:
+    version: 2
+    renderer: networkd
+    wifis:
+      wlan0:
+        dhcp4: yes
+        optional: true
+        access-points:
+          "your-wifi-ssid":
+            password: "your-wifi-password"
+  storage:
+    layout:
+      name: lvm
+  identity:
+    hostname: ubuntu
+    username: your-username
+    password: "$6$xyz$encrypted-password"
+  ssh:
+    install-server: yes
+  packages:
+    - ubuntu-desktop
+    - firefox
