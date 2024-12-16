@@ -20,7 +20,7 @@ autoinstall:
   identity:
     hostname: ubuntu
     username: ubuntu
-    password: "$6$xyz$encrypted-password"
+    password: "$6$yI88sic8SdrSn0Uq$z7a2eyx8z52H3cuoikdFT11krvudhBaYePbs672sR05cRxdG1AHqsj6gftxHzE9Yl30sTnP.pEHZuEAQUuL7s1"
   ssh:
     install-server: true
   packages:
