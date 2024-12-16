@@ -1,28 +1,38 @@
 #cloud-config
 autoinstall:
   version: 1
-  locale: en_US
+  locale: en_US 
   keyboard:
-    layout: us
+    layout: en
   network:
     version: 2
     renderer: networkd
     wifis:
       wlan0:
-        dhcp4: yes
-        optional: true
         access-points:
-          "your-wifi-ssid":
-            password: "your-wifi-password"
+          "CAFE-ZIZ-TERASSA-5G":
+            password: "20222022"
+        dhcp4: true
+        optional: true
   storage:
     layout:
-      name: lvm
+      name: direct
   identity:
     hostname: ubuntu
-    username: your-username
-    password: "$6$xyz$encrypted-password"
+    username: ubuntu
+    password: "$6$yI88sic8SdrSn0Uq$z7a2eyx8z52H3cuoikdFT11krvudhBaYePbs672sR05cRxdG1AHqsj6gftxHzE9Yl30sTnP.pEHZuEAQUuL7s1"
   ssh:
-    install-server: yes
+    install-server: true
   packages:
-    - ubuntu-desktop
-    - firefox
+    - linux-firmware
+    - firmware-b43-installer
+    - network-manager
+  late-commands:
+    - curtin in-target -- apt-get update
+    - curtin in-target -- apt-get upgrade -y
+    - curtin in-target -- apt-get install -y firmware-b43-installer
+    - curtin in-target -- apt-get install -y network-manager
+    - curtin in-target -- systemctl enable NetworkManager
+    - curtin in-target -- systemctl start NetworkManager
+    - curtin in-target -- netplan apply
+
